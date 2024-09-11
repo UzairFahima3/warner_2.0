@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  authenticated :user do
-    root to: 'dashboard#index'
-  end
-  unauthenticated :user do
-    root to: 'devise/registrations#new', as: :unauthenticated_root
+  devise_scope :user do
+    authenticated :user do
+      root to: 'dashboard#index'
+      resources :warehouses
+    end
+    unauthenticated :user do
+      root to: 'devise/registrations#new', as: :unauthenticated_root
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

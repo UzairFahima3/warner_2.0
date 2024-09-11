@@ -19,11 +19,10 @@
   </head>
 
   <body style="<%= polaris_body_styles %>">
-    <header>
+    <nav class="sidebar">
       <%= render "layouts/navigation" %>
-    </header>
+    </nav>
     <p class="notice"><%= notice %></p> 
     <p class="alert"><%= alert %></p>
-    <%= yield %>
   </body>
 </html>

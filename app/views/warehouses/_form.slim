@@ -1,0 +1,30 @@
+= polaris_page(narrow_width: true, title: "Warehouse Form", secondary_actions: [{ content: "Save"}], back_url: "",) do |page| 
+  / <% page.with_primary_action do |button| %>
+  /   <% button.with_icon(name: "PlusIcon") %>
+  / <% end %>
+  = form_with(model: warehouse, builder: Polaris::FormBuilder) do |form|
+    = polaris_layout do |layout|
+      = layout.with_section do 
+        = polaris_card do 
+          = form.errors_summary
+        br
+    = polaris_card(title: "Info") do |card|
+      = form.polaris_text_field(:name)
+      br
+      = form.polaris_text_field(:description,  multiline: true, rows: 3)
+    = polaris_card(title: "Address") do |card|
+      = form.polaris_text_field(:address)
+      br
+      = form.polaris_text_field(:city)
+      br
+      = form.polaris_text_field(:zip_code)
+      br
+      = form.polaris_text_field(:country)
+    = polaris_card(title: "Attachment") do |card|
+      = form.polaris_dropzone :image, multiple: false, direct_upload: true
+    br
+    = polaris_stack(alignment: :center) do |stack|
+      - stack.with_item do 
+        = polaris_button(primary: true, submit: true) { "Save theme" } 
+      - stack.with_item do
+        = polaris_button(url: warehouses_path) { "Cancel" }

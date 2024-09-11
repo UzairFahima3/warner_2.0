@@ -1,0 +1,21 @@
+= polaris_page(full_width: false,title: "Warehouse",secondary_actions: [{ content: "Export" }]) do |page|
+  - page.with_primary_action(primary: true, url: new_warehouse_path) { "Add Warehouse" }
+  
+
+  = polaris_card() do
+    - if warehouses.empty? 
+      = polaris_empty_state(heading: "Manage your inventory transfers",image: "https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png",) do |state| 
+        - state.with_primary_action { "Add transfer" }
+        - state.with_secondary_action(url: "#") { "Learn more" } 
+        <p>Track and receive your incoming inventory from suppliers.</p>
+    - else 
+      = polaris_index_table(warehouses) do |table|
+        - table.with_column("Name") do |row| 
+          = polaris_text_strong { row.name } 
+        - table.with_column("City") do |row|
+          = row.city
+        - table.with_column("Country") do |row|
+          = row.country
+        - table.with_column("Zip Code") do |row|
+          = row.zip_code
+    / <% end %>

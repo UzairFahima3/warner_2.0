@@ -335,7 +335,7 @@ DEPENDENCIES
   selenium-webdriver
   slim-rails
   sprockets-rails
-  sqlite3 (>= 1.4)
+  sqlite3 (~> 2.0, >= 2.0.4)
   stimulus-rails
   turbo-rails
   tzinfo-data
